@@ -32,12 +32,7 @@ public class CSVResolve {
         lerNomeCSV();
         inicializarHashMap();
         List<String[]> csvPadronizado = lerCSV();
-
         csvFiltrado = filtrarCSV(csvPadronizado);
-        for (String[] linha : csvFiltrado) {
-            System.out.println("Linha csv filtrado: " + linha.length);
-            System.out.println(Arrays.asList(linha));
-        }
         return true;
     }
 
@@ -95,11 +90,15 @@ public class CSVResolve {
                 // Variaveis para o registro
                 String data = linha[0];
                 String hora = linha[1];
-                String umidadeMedia = (umiMax != null && umiMin != null) ? String.valueOf((Double.parseDouble(umiMax) + Double.parseDouble(umiMin)) / 2) : null;
+                String umidadeMedia = (umiMax != null && !umiMax.isEmpty() && umiMin != null && !umiMin.isEmpty()) 
+                    ? String.valueOf((Double.parseDouble(umiMax) + Double.parseDouble(umiMin)) / 2) 
+                    : null;
                 String velVento = linha[14];
                 String dirVento = linha[15];
                 String chuva = linha[18];
-                String temperaturaMedia = (tempMax != null && tempMin != null) ? String.valueOf((Double.parseDouble(tempMax) + Double.parseDouble(tempMin)) / 2) : null;
+                String temperaturaMedia = (tempMax != null && !tempMax.isEmpty() && tempMin != null && !tempMin.isEmpty()) 
+                    ? String.valueOf((Double.parseDouble(tempMax) + Double.parseDouble(tempMin)) / 2) 
+                    : null;
                 // Formata a nova linha
                 novaLinha = String.format(Locale.US, "%s;%s;%s;%s;%s;%s;%s;%s;%s",
                     codigoCidade, codigoEstacao,
@@ -178,7 +177,7 @@ public class CSVResolve {
     }
 
      private String obterNomeAquivo() {
-        String nomecsv = caminhoCSV.substring(caminhoCSV.lastIndexOf('/') + 1);
+        String nomecsv = caminhoCSV.substring(caminhoCSV.lastIndexOf('\\') + 1);
         return nomecsv;
     }
 

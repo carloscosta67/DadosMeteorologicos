@@ -35,16 +35,15 @@ public class PrincipalController {
        
         List<RegistroDto> listaRegistroDto = RegistroDtoService.criaRegistroDto(csvFiltrado);
         List<RegistroDto> listaRegistroDto1 = RegistroDtoService.criaRegistroDto(csvFiltrado1);
-        for (RegistroDto registro : listaRegistroDto) {
-            System.out.println(registro);
-        }
-        System.out.println();
-        for (RegistroDto registro : listaRegistroDto1) {
-            System.out.println(registro);
-        }    
+
 
             IniciaBanco banco = new IniciaBanco();
             banco.iniciarBanco();
+            // banco1.salvarRegistro(listaRegistroDto);
+            // banco.salvarRegistro(listaRegistroDto1);
+            // banco.salvarRegistro(listaRegistroDto);
+            System.out.println(banco.selecionarTodosRegistros());
+    
     }
 }
 

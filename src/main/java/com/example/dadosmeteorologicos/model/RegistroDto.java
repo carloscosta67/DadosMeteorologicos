@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 public class RegistroDto {
     private UUID id;
     private String cidade;
-    private String estacao;
+    private Integer estacao;
     private LocalDate data;
     private LocalTime hora;
     private Double temperaturaMedia;
@@ -26,23 +26,44 @@ public class RegistroDto {
     private boolean chuvaSuspeita = false;
     
 
-    public RegistroDto(String cidade, String estacao, LocalDate data, LocalTime hora, Double temperaturaMedia,
-        Double umidadeMedia, Double velVento, Double dirVento, Double chuva, boolean temperaturaSuspeita, boolean umidadeSuspeita, boolean velocidadeVentoSuspeita, boolean direcaoVentoSuspeita, boolean chuvaSuspeita) {
-        this.id = UUID.randomUUID();
-        this.cidade = cidade;
-        this.estacao = estacao;
-        this.data = data;
-        this.hora = hora;
-        this.temperaturaMedia = temperaturaMedia;
-        this.umidadeMedia = umidadeMedia;
-        this.velVento = velVento;
-        this.dirVento = dirVento;
-        this.chuva = chuva;
-        this.temperaturaSuspeita = temperaturaSuspeita;
-        this.umidadeSuspeita = umidadeSuspeita;
-        this.velocidadeVentoSuspeita = velocidadeVentoSuspeita;
-        this.direcaoVentoSuspeita = direcaoVentoSuspeita;
-        this.chuvaSuspeita = chuvaSuspeita;
-    }
+    public RegistroDto(String cidade, Integer estacao, LocalDate data, LocalTime hora, Double temperaturaMedia,
+    Double umidadeMedia, Double velVento, Double dirVento, Double chuva, boolean temperaturaSuspeita, boolean umidadeSuspeita, boolean velocidadeVentoSuspeita, boolean direcaoVentoSuspeita, boolean chuvaSuspeita) {
+    this.id = UUID.randomUUID();
+    this.cidade = cidade;
+    this.estacao = estacao;
+    this.data = data;
+    this.hora = hora;
+    this.temperaturaMedia = temperaturaMedia;
+    this.umidadeMedia = umidadeMedia;
+    this.velVento = velVento;
+    this.dirVento = dirVento;
+    this.chuva = chuva;
+    this.temperaturaSuspeita = temperaturaSuspeita;
+    this.umidadeSuspeita = umidadeSuspeita;
+    this.velocidadeVentoSuspeita = velocidadeVentoSuspeita;
+    this.direcaoVentoSuspeita = direcaoVentoSuspeita;
+    this.chuvaSuspeita = chuvaSuspeita;
+}
+
+public RegistroDto(UUID id, String cidade, Integer estacao, LocalDate data, LocalTime hora, Double temperaturaMedia,
+    Double umidadeMedia, Double velVento, Double dirVento, Double chuva, boolean temperaturaSuspeita, boolean umidadeSuspeita, boolean velocidadeVentoSuspeita, boolean direcaoVentoSuspeita, boolean chuvaSuspeita) {
+    this.id = id;
+    this.cidade = cidade;
+    this.estacao = estacao;
+    this.data = data;
+    this.hora = hora;
+    this.temperaturaMedia = temperaturaMedia;
+    this.umidadeMedia = umidadeMedia;
+    this.velVento = velVento;
+    this.dirVento = dirVento;
+    this.chuva = chuva;
+    this.temperaturaSuspeita = temperaturaSuspeita;
+    this.umidadeSuspeita = umidadeSuspeita;
+    this.velocidadeVentoSuspeita = velocidadeVentoSuspeita;
+    this.direcaoVentoSuspeita = direcaoVentoSuspeita;
+    this.chuvaSuspeita = chuvaSuspeita;
+}
+
+    
 
 }

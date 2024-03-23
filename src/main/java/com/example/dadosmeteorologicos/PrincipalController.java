@@ -39,10 +39,13 @@ public class PrincipalController {
 
             IniciaBanco banco = new IniciaBanco();
             banco.iniciarBanco();
-            // banco1.salvarRegistro(listaRegistroDto);
+            banco.salvarRegistro(listaRegistroDto);
             // banco.salvarRegistro(listaRegistroDto1);
-            // banco.salvarRegistro(listaRegistroDto);
             System.out.println(banco.selecionarTodosRegistros());
+            System.out.println();
+            System.out.println("--------------- --------------------");
+            System.out.println();
+            System.out.println(banco.selecionarTodosRegistrosSuspeitos());
     
     }
 }

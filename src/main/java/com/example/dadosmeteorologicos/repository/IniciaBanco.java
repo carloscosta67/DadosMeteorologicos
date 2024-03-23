@@ -164,7 +164,43 @@ public class IniciaBanco {
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         }
-
         return registros;
     }   
+
+    public List<RegistroDto> selecionarTodosRegistrosSuspeitos(){
+        List<RegistroDto> registros = new ArrayList<>();
+        try {
+            Connection conn = DriverManager.getConnection(url, user, password);
+            if (conn != null) {
+                String sql = "SELECT * FROM Registro WHERE temperaturaSuspeita = true OR umidadeSuspeita = true OR velocidadeVentoSuspeita = true OR direcaoVentoSuspeita = true OR chuvaSuspeita = true";
+
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql);
+
+                while (rs.next()) {
+                    UUID id = UUID.fromString(rs.getString("id"));
+                    String cidade = rs.getString("cidade");
+                    Integer estacao = rs.getInt("estacao");
+                    LocalDate data = rs.getDate("data").toLocalDate();
+                    LocalTime hora = rs.getTime("hora").toLocalTime();
+                    Double temperaturaMedia = rs.getDouble("temperaturaMedia");
+                    Double umidadeMedia = rs.getDouble("umidadeMedia");
+                    Double velVento = rs.getDouble("velVento");
+                    Double dirVento = rs.getDouble("dirVento");
+                    Double chuva = rs.getDouble("chuva");
+                    Boolean temperaturaSuspeita = rs.getBoolean("temperaturaSuspeita");
+                    Boolean umidadeSuspeita = rs.getBoolean("umidadeSuspeita");
+                    Boolean velocidadeVentoSuspeita = rs.getBoolean("velocidadeVentoSuspeita");
+                    Boolean direcaoVentoSuspeita = rs.getBoolean("direcaoVentoSuspeita");
+                    Boolean chuvaSuspeita = rs.getBoolean("chuvaSuspeita");
+
+                    RegistroDto registro = new RegistroDto(id, cidade, estacao, data, hora, temperaturaMedia, umidadeMedia, velVento, dirVento, chuva, temperaturaSuspeita, umidadeSuspeita, velocidadeVentoSuspeita, direcaoVentoSuspeita, chuvaSuspeita);
+                    System.out.println(registro);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        }
+        return registros;
+    }
 }

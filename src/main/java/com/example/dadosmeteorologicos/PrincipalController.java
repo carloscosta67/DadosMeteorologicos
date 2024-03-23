@@ -44,7 +44,6 @@ public class PrincipalController {
         System.out.println("--------------- --------------------");
         System.out.println();
         System.out.println(banco.selecionarTodosRegistrosSuspeitos());
-    
     }
 
     @FXML

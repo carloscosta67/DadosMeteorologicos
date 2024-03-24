@@ -1,8 +1,10 @@
-package com.example.dadosmeteorologicos;
+package com.example.dadosmeteorologicos.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
+import com.example.dadosmeteorologicos.App;
 import com.example.dadosmeteorologicos.Services.CSVResolve;
 import com.example.dadosmeteorologicos.Services.RegistroDtoService;
 import com.example.dadosmeteorologicos.model.RegistroDto;
@@ -26,8 +28,10 @@ public class PrincipalController {
     @FXML
     private Button selecionarArquivo;
     private String caminhoArquivo;
+    @FXML
+    private Button gerarRelatorio;
 
-    public void PegaDados(@SuppressWarnings("exports") ActionEvent actionEvent) {
+    public void PegaDados(ActionEvent actionEvent) {
         System.out.println(nome.getText());
         System.out.println(senha.getText());
 
@@ -39,11 +43,11 @@ public class PrincipalController {
         IniciaBanco banco = new IniciaBanco();
         banco.iniciarBanco();
         banco.salvarRegistro(listaRegistroDto);
-        System.out.println(banco.selecionarTodosRegistros());
-        System.out.println();
-        System.out.println("--------------- --------------------");
-        System.out.println();
-        System.out.println(banco.selecionarTodosRegistrosSuspeitos());
+        // System.out.println(banco.selecionarTodosRegistros());
+        // System.out.println();
+        // System.out.println("--------------- --------------------");
+        // System.out.println();
+        // System.out.println(banco.selecionarTodosRegistrosSuspeitos());
     }
 
     @FXML
@@ -59,6 +63,15 @@ public class PrincipalController {
         if (file != null) {
             // Aqui você pode fazer algo com o arquivo CSV selecionado
             System.out.println("Arquivo selecionado: " + file.getAbsolutePath());
+        }
+    }
+
+    @FXML
+    void tabelaRegistroController(ActionEvent event) {
+        try {
+        App.setRoot("TabelaRegistro");
+        } catch (IOException e) {
+        System.err.format("Erro ao abrir a tela de registros: %s", e.getMessage());
         }
     }
 }

@@ -31,10 +31,10 @@ public class PrincipalController {
     @FXML
     private Button gerarRelatorio;
 
-    public void PegaDados(ActionEvent actionEvent) {
-        System.out.println(nome.getText());
-        System.out.println(senha.getText());
+    @FXML
+    private Button valorMedio;
 
+    public void PegaDados(ActionEvent actionEvent) {
         CSVResolve leitor = new CSVResolve(caminhoArquivo);
         leitor.validarCSV();
         List<String[]> csvFiltrado = leitor.CsvFiltrado();
@@ -43,11 +43,6 @@ public class PrincipalController {
         IniciaBanco banco = new IniciaBanco();
         banco.iniciarBanco();
         banco.salvarRegistro(listaRegistroDto);
-        // System.out.println(banco.selecionarTodosRegistros());
-        // System.out.println();
-        // System.out.println("--------------- --------------------");
-        // System.out.println();
-        // System.out.println(banco.selecionarTodosRegistrosSuspeitos());
     }
 
     @FXML
@@ -58,10 +53,11 @@ public class PrincipalController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Selecionar arquivo CSV");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Arquivos CSV", "*.csv"));
-        File file = fileChooser.showOpenDialog(stage); // Passa a referência do Stage para o método
+        // Passa a referência do Stage para o método
+        File file = fileChooser.showOpenDialog(stage); 
         caminhoArquivo = file.getAbsolutePath();
         if (file != null) {
-            // Aqui você pode fazer algo com o arquivo CSV selecionado
+
             System.out.println("Arquivo selecionado: " + file.getAbsolutePath());
         }
     }
@@ -72,6 +68,15 @@ public class PrincipalController {
         App.setRoot("TabelaRegistro");
         } catch (IOException e) {
         System.err.format("Erro ao abrir a tela de registros: %s", e.getMessage());
+        }
+    }
+
+    @FXML
+    void valorMedioViewController(ActionEvent event) {
+        try {
+        App.setRoot("valorMedio");
+        } catch (IOException e) {
+        System.err.format("Erro ao abrir a tela de valor médio: %s", e.getMessage());
         }
     }
 }

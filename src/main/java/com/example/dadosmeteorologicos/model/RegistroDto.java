@@ -46,7 +46,7 @@ public class RegistroDto {
 }
 
 public RegistroDto(UUID id, String cidade, Integer estacao, LocalDate data, LocalTime hora, Double temperaturaMedia,
-    Double umidadeMedia, Double velVento, Double dirVento, Double chuva, boolean temperaturaSuspeita, boolean umidadeSuspeita, boolean velocidadeVentoSuspeita, boolean direcaoVentoSuspeita, boolean chuvaSuspeita) {
+    Double umidadeMedia, Double velVento, Double dirVento, Double chuva, Boolean temperaturaSuspeita, Boolean umidadeSuspeita, Boolean velocidadeVentoSuspeita, Boolean direcaoVentoSuspeita, Boolean chuvaSuspeita) {
     this.id = id;
     this.cidade = cidade;
     this.estacao = estacao;

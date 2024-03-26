@@ -2,6 +2,9 @@ package com.example.dadosmeteorologicos.model;
 
 import java.util.UUID;
 
+import lombok.Data;
+
+@Data   
 public class Cidade {
     private UUID id;
     private String nome;

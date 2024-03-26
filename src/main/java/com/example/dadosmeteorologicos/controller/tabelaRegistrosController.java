@@ -7,7 +7,6 @@ import java.util.List;
 
 import com.example.dadosmeteorologicos.App;
 import com.example.dadosmeteorologicos.model.RegistroDto;
-import com.example.dadosmeteorologicos.repository.IniciaBanco;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -16,15 +15,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class tabelaRegistrosController {
+public class TabelaRegistrosController {
 
     @FXML
     private Button voltarButton;
     @FXML
     private TableView<RegistroDto> tabelaRegistros;
-
-    @FXML
-    private TableColumn<RegistroDto, Integer> colunaId;
 
     @FXML
     private TableColumn<RegistroDto, String> colunaCidade;
@@ -53,8 +49,14 @@ public class tabelaRegistrosController {
     @FXML
     private TableColumn<RegistroDto, Double> colunaChuva;
 
+    private List<RegistroDto> registros;
+
+    public void setRegistros(List<RegistroDto> registros) {
+        this.registros = registros;
+    }
+
+    @FXML
     public void initialize() {
-        colunaId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colunaCidade.setCellValueFactory(new PropertyValueFactory<>("cidade"));
         colunaEstacao.setCellValueFactory(new PropertyValueFactory<>("estacao"));
         colunaData.setCellValueFactory(new PropertyValueFactory<>("data"));
@@ -65,13 +67,9 @@ public class tabelaRegistrosController {
         colunaDirVento.setCellValueFactory(new PropertyValueFactory<>("dirVento"));
         colunaChuva.setCellValueFactory(new PropertyValueFactory<>("chuva"));
 
-        List<RegistroDto> registros = buscarRegistrosDoBancoDeDados();
-        tabelaRegistros.setItems(FXCollections.observableArrayList(registros));
-    }
-
-    private List<RegistroDto> buscarRegistrosDoBancoDeDados() {
-        IniciaBanco banco = new IniciaBanco();
-        return banco.selecionarTodosRegistros();
+        if (registros != null) {
+            tabelaRegistros.setItems(FXCollections.observableArrayList(registros));
+        }
     }
 
     @FXML

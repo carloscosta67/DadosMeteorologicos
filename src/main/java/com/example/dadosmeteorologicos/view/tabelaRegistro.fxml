@@ -6,12 +6,10 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600" prefWidth="900" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dadosmeteorologicos.controller.tabelaRegistrosController">
+<AnchorPane prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dadosmeteorologicos.controller.TabelaRegistrosController">
     <children>
-        <Button fx:id="voltarButton" layoutX="28.0" layoutY="29.0" mnemonicParsing="false" onAction="#retornarPrincipal" prefHeight="35.0" prefWidth="78.0" text="Voltar" />
-        <TableView fx:id="tabelaRegistros" layoutX="6.0" layoutY="14.0" prefHeight="600" prefWidth="1000">
+        <TableView fx:id="tabelaRegistros" layoutY="71.0" prefHeight="543.0" prefWidth="800.0">
             <columns>
-                <TableColumn fx:id="colunaId" text="ID" />
                 <TableColumn fx:id="colunaCidade" text="Cidade" />
                 <TableColumn fx:id="colunaEstacao" text="Estação" />
                 <TableColumn fx:id="colunaData" text="Data" />
@@ -23,6 +21,7 @@
                 <TableColumn fx:id="colunaChuva" text="Chuva" />
             </columns>
         </TableView>
+        <Button fx:id="voltarButton" layoutX="14.0" layoutY="23.0" mnemonicParsing="false" onAction="#retornarPrincipal" prefHeight="35.0" prefWidth="78.0" text="Voltar" />
     </children>
     <cursor>
         <Cursor fx:constant="DEFAULT" />

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600" prefWidth="900" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dadosmeteorologicos.controller.TesteController">
+    <cursor>
+        <Cursor fx:constant="DEFAULT" />
+    </cursor>
+   <children>
+      <TabPane layoutX="-2.0" prefHeight="600.0" prefWidth="906.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Inserir dados">
+            <content>
+              <fx:include source="principal.fxml" />
+            </content>
+          </Tab>
+          <Tab text="Valor Medio">
+            <content>
+              <fx:include source="ValorMedio.fxml" />
+            </content>
+          </Tab>
+          <Tab text="Situação">
+            <content>
+              
+            </content>
+          </Tab>
+          <Tab text="BoxPlot">
+            <content>
+              
+            </content>
+          </Tab>
+          <Tab text="Registros Suspeitos">
+            <content>
+             
+            </content>
+          </Tab>
+            <Tab text="Configurações">
+            <content>
+             
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

@@ -42,7 +42,7 @@ public class ValorMedioController extends PrincipalController {
 
     @FXML
     public void initialize() {
-      
+        
         executar.setVisible(false);
 
         // Adiciona um ouvinte à propriedade de texto do menuButton

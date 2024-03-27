@@ -21,7 +21,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 
-public class ValorMedioController extends PrincipalController {
+public class ValorMedioController {
     private ValorMedioService service;
     @FXML
     private MenuButton menuButton;
@@ -118,7 +118,11 @@ public class ValorMedioController extends PrincipalController {
         LocalDate dataSelecionadaFinal = dataFinal.getValue();
         java.sql.Date dataInicialSqlDate = java.sql.Date.valueOf(dataSelecionadaInicial);
         java.sql.Date dataFinalSqlDate = java.sql.Date.valueOf(dataSelecionadaFinal);
-        String IdCidade = "SC";
+        
+        // Id da cidade MOCKADO
+        String IdCidade = "SC"; 
+
+
         // Faz a consulta e retona o resultado
         List<RegistroDto> resultado = service.consultaPorIdEDatas(IdCidade, dataInicialSqlDate, dataFinalSqlDate);
         System.out.println(resultado.size());

@@ -21,7 +21,6 @@
                 <TableColumn fx:id="colunaChuva" text="Chuva" />
             </columns>
         </TableView>
-        <Button fx:id="voltarButton" layoutX="14.0" layoutY="23.0" mnemonicParsing="false" onAction="#retornarPrincipal" prefHeight="35.0" prefWidth="78.0" text="Voltar" />
     </children>
     <cursor>
         <Cursor fx:constant="DEFAULT" />

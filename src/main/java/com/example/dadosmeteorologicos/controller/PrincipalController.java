@@ -1,11 +1,9 @@
 package com.example.dadosmeteorologicos.controller;
 
 import java.io.File;
-import java.io.IOException;
 
 import java.util.List;
 
-import com.example.dadosmeteorologicos.App;
 import com.example.dadosmeteorologicos.Services.CSVResolve;
 import com.example.dadosmeteorologicos.Services.RegistroDtoService;
 import com.example.dadosmeteorologicos.model.RegistroDto;
@@ -25,14 +23,6 @@ public class PrincipalController {
     @FXML
     private Button selecionarArquivo;
     
-    @FXML
-    private Button gerarRelatorio;
-
-    @FXML
-    private Button valorMedio;
-
-
-
     @FXML
     public void initialize() {
         System.out.println("Iniciando a aplicação");
@@ -63,24 +53,6 @@ public class PrincipalController {
         if (CsvEntrada != null) {
 
             System.out.println("Arquivo selecionado: " + CsvEntrada.getAbsolutePath());
-        }
-    }
-
-    @FXML
-    void tabelaRegistroController(ActionEvent event) {
-        try {
-        App.setRoot("TabelaRegistro");
-        } catch (IOException e) {
-        System.err.format("Erro ao abrir a tela de registros: %s", e.getMessage());
-        }
-    }
-
-    @FXML
-    void valorMedioViewController(ActionEvent event) {
-        try {
-        App.setRoot("valorMedio");
-        } catch (IOException e) {
-        System.err.format("Erro ao abrir a tela de valor médio: %s", e.getMessage());
         }
     }
 }

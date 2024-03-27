@@ -8,10 +8,6 @@
     <children>
         <Button fx:id="salvarCsvButton" layoutX="567.0" layoutY="475.0" mnemonicParsing="false" onAction="#salvarBanco" prefHeight="45.0" prefWidth="126.0" text="Salvar" />
         <Button fx:id="selecionarArquivo" layoutX="325.0" layoutY="465.0" mnemonicParsing="false" onAction="#selecionarCsv" prefHeight="65.0" prefWidth="204.0" text="Selecionar Arquivo" />
-        <Button fx:id="gerarRelatorio" layoutX="161.0" layoutY="311.0" mnemonicParsing="false" onAction="#tabelaRegistroController" prefHeight="45.0" prefWidth="126.0" text="Gerar relátorio" />
-        <Button fx:id="valorMedio" layoutX="301.0" layoutY="311.0" mnemonicParsing="false" onAction="#valorMedioViewController" prefHeight="45.0" prefWidth="126.0" text="Valor Médio" />
-        <Button layoutX="441.0" layoutY="311.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="126.0" text="Button" />
-        <Button layoutX="582.0" layoutY="311.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="126.0" text="Button" />
     </children>
     <cursor>
         <Cursor fx:constant="DEFAULT" />

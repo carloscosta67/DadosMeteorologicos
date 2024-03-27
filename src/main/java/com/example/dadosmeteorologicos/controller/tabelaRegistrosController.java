@@ -1,24 +1,19 @@
 package com.example.dadosmeteorologicos.controller;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-import com.example.dadosmeteorologicos.App;
 import com.example.dadosmeteorologicos.model.RegistroDto;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class TabelaRegistrosController {
 
-    @FXML
-    private Button voltarButton;
     @FXML
     private TableView<RegistroDto> tabelaRegistros;
 
@@ -71,14 +66,4 @@ public class TabelaRegistrosController {
             tabelaRegistros.setItems(FXCollections.observableArrayList(registros));
         }
     }
-
-    @FXML
-    public void retornarPrincipal() {
-        try {
-        App.setRoot("principal");
-        } catch (IOException e) {
-        System.err.format("Erro ao abrir a tela de registros: %s", e.getMessage());
-        }
-    }
-
 }

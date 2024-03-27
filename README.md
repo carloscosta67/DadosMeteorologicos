@@ -1,4 +1,4 @@
-# API Fatec
+# API FATEC
 
 ## Desafio
 

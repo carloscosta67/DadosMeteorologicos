@@ -3,19 +3,22 @@ package com.example.dadosmeteorologicos.Services;
 import java.sql.Date;
 import java.util.List;
 
+import com.example.dadosmeteorologicos.db.ValorMedioSQL;
 import com.example.dadosmeteorologicos.model.RegistroDto;
-import com.example.dadosmeteorologicos.repository.IniciaBanco;
+
 
 public class ValorMedioService {
   public List<String[]> getCidadesDoBancoDeDados(){
-    IniciaBanco banco = new IniciaBanco();
+    ValorMedioSQL banco = new ValorMedioSQL();
     List<String[]> cidades = banco.getCidadesMenuItem();
+    banco.fecharConexao();
     return cidades;
   }
   
-  public List<RegistroDto> consultaPorIdEDatas(String id, Date dataInicial, Date dataFinal){
-    IniciaBanco banco = new IniciaBanco();
+  public List<RegistroDto> consultaCidadePorIdEDatas(String id, Date dataInicial, Date dataFinal){
+    ValorMedioSQL banco = new ValorMedioSQL(); 
     List<RegistroDto> cidades = banco.getRelatorioValorMedio(id, dataInicial, dataFinal);
+    banco.fecharConexao();
     return cidades;
   }
 

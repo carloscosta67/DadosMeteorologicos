@@ -6,8 +6,8 @@ import java.util.List;
 
 import com.example.dadosmeteorologicos.Services.CSVResolve;
 import com.example.dadosmeteorologicos.Services.RegistroDtoService;
+import com.example.dadosmeteorologicos.db.LeitorCsvSQL;
 import com.example.dadosmeteorologicos.model.RegistroDto;
-import com.example.dadosmeteorologicos.repository.IniciaBanco;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,7 +15,7 @@ import javafx.scene.control.Button;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-public class PrincipalController {
+public class LeitorCsvController {
     private String caminhoArquivo;
 
     @FXML
@@ -29,14 +29,16 @@ public class PrincipalController {
         salvarCsvButton.setVisible(false);
     }
 
+    // Método para ler o arquivo CSV e salvar no banco, deve ser separado em 2?
     public void salvarBanco(ActionEvent actionEvent) {
         CSVResolve leitor = new CSVResolve(caminhoArquivo);
         leitor.validarCSV();
         List<String[]> csvFiltrado = leitor.CsvFiltrado();
         List<RegistroDto> listaRegistroDto = RegistroDtoService.criaRegistroDto(csvFiltrado);
-        IniciaBanco banco = new IniciaBanco();
-        banco.iniciarBanco();
+        LeitorCsvSQL banco = new LeitorCsvSQL();
         banco.salvarRegistro(listaRegistroDto);
+        banco.fecharConexao();
+        System.out.println("foram salvos: " + listaRegistroDto.size() + " registros");
     }
 
     @FXML

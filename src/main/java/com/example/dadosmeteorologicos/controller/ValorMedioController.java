@@ -123,8 +123,7 @@ public class ValorMedioController {
         String IdCidade = "SC"; 
 
 
-        // Faz a consulta e retona o resultado
-        List<RegistroDto> resultado = service.consultaPorIdEDatas(IdCidade, dataInicialSqlDate, dataFinalSqlDate);
+        List<RegistroDto> resultado = service.consultaCidadePorIdEDatas(IdCidade, dataInicialSqlDate, dataFinalSqlDate);
         System.out.println(resultado.size());
 
         // Carrega a tela de resultados

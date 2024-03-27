@@ -39,6 +39,16 @@ public class IniciaBanco {
         return conn;
     }
 
+    public void fecharConexao() {
+        if (conn != null) {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+            }
+        }
+    }
+
     public void iniciarBanco(){
         try {
             if (conn != null) {
@@ -147,13 +157,5 @@ public class IniciaBanco {
         }
         return registros;
     }
-    public void fecharConexao() {
-        if (conn != null) {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-            }
-        }
-    }
+   
 }

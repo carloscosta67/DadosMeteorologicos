@@ -62,6 +62,10 @@ public class ValorMedioController {
 
         // Busca as cidades do banco de dados
         List<String[]> cidades = service.getCidadesDoBancoDeDados();
+        //cidade[0] Nome cidade
+        //cidade[1] Sigla cidade
+        //cidade[2] Data primeiro registro
+        //cidade[3] Data ultimo registro
     
         // Adiciona um MenuItem para cada cidade
         for (String[] cidade : cidades) {
@@ -81,8 +85,6 @@ public class ValorMedioController {
             // Atualiza os limites do DatePicker
             LocalDate minDate = LocalDate.parse(cidade[2]);
             LocalDate maxDate = LocalDate.parse(cidade[3]);
-            System.out.println("Min date: " + minDate);
-            System.out.println("Max date: " + maxDate);
 
             dataInicial.setDayCellFactory(picker -> new DateCell() {
                 @Override

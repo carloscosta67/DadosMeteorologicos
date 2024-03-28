@@ -5,8 +5,8 @@ import java.io.File;
 import java.util.List;
 
 import com.example.dadosmeteorologicos.Services.CSVResolve;
+import com.example.dadosmeteorologicos.Services.LeitorCsvService;
 import com.example.dadosmeteorologicos.Services.RegistroDtoService;
-import com.example.dadosmeteorologicos.db.LeitorCsvSQL;
 import com.example.dadosmeteorologicos.model.RegistroDto;
 
 import javafx.event.ActionEvent;
@@ -25,7 +25,7 @@ public class LeitorCsvController {
     
     @FXML
     public void initialize() {
-        System.out.println("Iniciando a aplicação");
+        System.out.println("Iniciado Leitor CSV");
         salvarCsvButton.setVisible(false);
     }
 
@@ -37,9 +37,8 @@ public class LeitorCsvController {
         }
         List<String[]> csvFiltrado = leitor.CsvFiltrado();
         List<RegistroDto> listaRegistroDto = RegistroDtoService.criaRegistroDto(csvFiltrado);
-        LeitorCsvSQL banco = new LeitorCsvSQL();
-        banco.salvarRegistro(listaRegistroDto);
-        banco.fecharConexao();
+        LeitorCsvService service = new LeitorCsvService();
+        service.salvarRegistro(listaRegistroDto);        
         System.out.println("foram salvos: " + listaRegistroDto.size() + " registros");
     }
 

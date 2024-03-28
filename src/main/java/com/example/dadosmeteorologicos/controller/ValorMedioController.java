@@ -36,13 +36,12 @@ public class ValorMedioController {
 
     public ValorMedioController() {
         this.service = new ValorMedioService();
-        System.out.println("Construtor do valor médio");
     }
 
 
     @FXML
     public void initialize() {
-        System.out.println("Iniciei controlador valor medio");
+        System.out.println("Iniciado valor medio");
         executar.setVisible(false);
 
         // Adiciona um ouvinte à propriedade de texto do menuButton
@@ -66,7 +65,6 @@ public class ValorMedioController {
         //cidade[1] Sigla cidade
         //cidade[2] Data primeiro registro
         //cidade[3] Data ultimo registro
-        System.out.println("Cidades:" + cidades);
         // Adiciona um MenuItem para cada cidade
         for (String[] cidade : cidades) {
             String texto = cidade[0] + " - " + cidade[1]  + " dados: " + cidade[2]+ " até " + cidade[3];

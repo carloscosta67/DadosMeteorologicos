@@ -21,7 +21,7 @@ public class App extends Application {
         IniciaBanco banco = new IniciaBanco();
         banco.iniciarBanco();
         banco.fecharConexao();
-        scene = new Scene(loadFXML("main"), 900, 600);
+        scene = new Scene(loadFXML("Main"), 900, 600);
         stage.setScene(scene);
         stage.show();
     }

@@ -78,7 +78,6 @@ public class CSVResolve {
                 continue;
             }
             String novaLinha = "";
-
             if (automatico) {
                 // Variaveis para calculo da media
                 String tempMax = linha[3];
@@ -89,6 +88,9 @@ public class CSVResolve {
                 // Variaveis para o registro
                 String data = linha[0];
                 String hora = linha[1];
+                // A variável umidadeMedia é calculada da seguinte maneira:
+                // Se umiMax e umiMin não são nulos e não estão vazios, então a média de umiMax e umiMin é calculada e convertida para uma String.
+                // Caso contrário, umidadeMedia é definida como null.    
                 String umidadeMedia = (umiMax != null && !umiMax.isEmpty() && umiMin != null && !umiMin.isEmpty()) 
                     ? String.valueOf((Double.parseDouble(umiMax) + Double.parseDouble(umiMin)) / 2) 
                     : null;
@@ -117,7 +119,12 @@ public class CSVResolve {
                     String velVento = linha[5];
                     String dirVento = linha[7];
                     String chuva = linha[11];
-                    String temperaturaMedia = tempHora != null ? String.valueOf(tentarParseDouble(tempHora) - 273) : null;
+                    // A variável temperaturaMedia é calculada da seguinte maneira:
+                    // Se tempHora não é nulo e não está vazio, então o valor de tempHora é convertido para Double, 273 é subtraído desse valor, e o resultado é convertido para uma String.
+                    // Caso contrário, temperaturaMedia é definida como null.
+                    String temperaturaMedia = (tempHora != null && !tempHora.isEmpty()) 
+                    ? String.valueOf(tentarParseDouble(tempHora) - 273)
+                    : null; 
                     // Formata a nova linha
                     novaLinha = String.format(Locale.US, "%s;%s;%s;%s;%s;%s;%s;%s;%s",
                         codigoCidade, codigoEstacao,

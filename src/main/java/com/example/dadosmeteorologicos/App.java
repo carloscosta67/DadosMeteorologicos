@@ -9,9 +9,9 @@ import java.io.IOException;
 
 import com.example.dadosmeteorologicos.db.IniciaBanco;
 
-/**
- * JavaFX App
- */
+
+ //JavaFX App
+
 public class App extends Application {
 
     private static Scene scene;

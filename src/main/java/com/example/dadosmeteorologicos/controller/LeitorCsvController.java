@@ -32,7 +32,9 @@ public class LeitorCsvController {
     // Método para ler o arquivo CSV e salvar no banco, deve ser separado em 2?
     public void salvarBanco(ActionEvent actionEvent) {
         CSVResolve leitor = new CSVResolve(caminhoArquivo);
-        leitor.validarCSV();
+        if(!leitor.validarCSV()){
+
+        }
         List<String[]> csvFiltrado = leitor.CsvFiltrado();
         List<RegistroDto> listaRegistroDto = RegistroDtoService.criaRegistroDto(csvFiltrado);
         LeitorCsvSQL banco = new LeitorCsvSQL();
@@ -53,7 +55,6 @@ public class LeitorCsvController {
         File CsvEntrada = fileChooser.showOpenDialog(stage); 
         caminhoArquivo = CsvEntrada.getAbsolutePath();
         if (CsvEntrada != null) {
-
             System.out.println("Arquivo selecionado: " + CsvEntrada.getAbsolutePath());
         }
     }

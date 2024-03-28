@@ -14,7 +14,7 @@
         <tabs>
           <Tab text="Inserir dados">
             <content>
-              <fx:include source="principal.fxml" />
+              <fx:include source="LeitorCsv.fxml" />
             </content>
           </Tab>
           <Tab text="Valor Medio">

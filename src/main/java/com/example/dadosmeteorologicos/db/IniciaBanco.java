@@ -76,7 +76,7 @@ public class IniciaBanco {
                 stmt.execute(sql);
     
             } else {
-                System.out.println("Failed to make connection!");
+                System.out.println("Falha ao conectar no banco!");
             }
         } catch (SQLException e) {
             System.err.format("SQL Stateee: %s\n%s", e.getSQLState(), e.getMessage());

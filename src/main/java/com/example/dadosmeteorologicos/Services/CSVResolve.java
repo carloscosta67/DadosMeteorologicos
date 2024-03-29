@@ -9,6 +9,10 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.example.dadosmeteorologicos.exceptions.CSVInvalidoException;
+import com.example.dadosmeteorologicos.exceptions.NomeCSVInvalidoException;
+
 import java.util.HashMap;
 
 public class CSVResolve {
@@ -27,9 +31,10 @@ public class CSVResolve {
     }
 
 
-    public boolean validarCSV(){
-        lerNomeCSV();
+    public boolean validarCSV() throws NomeCSVInvalidoException, CSVInvalidoException{
         inicializarHashMap();
+        lerNomeCSV();
+        // Antes de retornar o csv padronizado ele testa para verificar se o cabeçalho é válido
         List<String[]> csvPadronizado = lerCSV();
         csvFiltrado = filtrarCSV(csvPadronizado);
         return true;
@@ -39,7 +44,7 @@ public class CSVResolve {
         return csvFiltrado;
     }
 
-    public List<String[]> lerCSV(){
+    public List<String[]> lerCSV() throws CSVInvalidoException{
         
         List<String[]> csvPadronizado = new ArrayList<>();
         String[] cabecalhoCSV = null;
@@ -64,7 +69,9 @@ public class CSVResolve {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        validarCabecalho(cabecalhoCSV);
+        if (!validarCabecalho(cabecalhoCSV)) {
+            throw new CSVInvalidoException("O arquivo CSV não possui o cabeçalho esperado.");
+        }
         return csvPadronizado;
     }
 
@@ -187,7 +194,7 @@ public class CSVResolve {
         return nomecsv;
     }
 
-    private boolean lerNomeCSV(){
+    private boolean lerNomeCSV() throws NomeCSVInvalidoException{
         String nomecsv = obterNomeAquivo();
         System.out.println("nome: " + nomecsv);
         String nomeSemExtensao = nomecsv.substring(0, nomecsv.lastIndexOf('.'));
@@ -215,7 +222,7 @@ public class CSVResolve {
             System.out.println("Código da Cidade: " + codigoCidade);
             return true;
         } else{
-            return false;
+            throw new NomeCSVInvalidoException("O nome do arquivo CSV não está no formato esperado.");
         }
     }
 

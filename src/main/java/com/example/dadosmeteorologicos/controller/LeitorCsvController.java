@@ -41,21 +41,23 @@ public class LeitorCsvController {
         salvarCsvButton.setVisible(false);
     }
 
-    // Método para ler o arquivo CSV e salvar no banco, deve ser separado em 2?
+    // Botão que faz o processo de validar CSV, ler e salvar no banco
     public void salvarBanco(ActionEvent actionEvent) {
         CSVResolve leitor = new CSVResolve(caminhoArquivo);
         try {
             leitor.validarCSV();
-        } catch (NomeCSVInvalidoException e) {
-            // Se a validação do nome falhar, peça ao usuário um novo nome
-            Platform.runLater(this::mostrarDialogoNomeInvalido);
-            return;
         } catch (CSVInvalidoException e) {
-            // Se a validação do CSV falhar, mostre a caixa de diálogo de erro
+            // Se a validação do CSV falhar, mostre a caixa de diálogo de erro e retorna para escolher novamente o arquivo
             mostrarDialogoCabecalhoCsvInvalido();
                 return;
+        } catch (NomeCSVInvalidoException e) {
+            //A FAZER: Deve ser criado uma metodo(funcao) para pegar o nome da cidade, sigla da cidade e numero da estacao e verificar 
+            // se existe no banco
+            // A FAZER: Deve ser solicitado ao usuário que insira o nome da cidade, sigla da cidade e número da estação e criar a cidade 
+            // no banco
+            Platform.runLater(this::mostrarDialogoNomeInvalido);
+            return;
         } 
-
             List<String[]> csvFiltrado = leitor.CsvFiltrado();
             List<RegistroDto> listaRegistroDto = RegistroDtoService.criaRegistroDto(csvFiltrado);
             LeitorCsvService service = new LeitorCsvService();

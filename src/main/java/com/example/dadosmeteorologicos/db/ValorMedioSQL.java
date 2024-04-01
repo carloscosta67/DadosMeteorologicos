@@ -10,7 +10,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import com.example.dadosmeteorologicos.model.RegistroDto;
 
@@ -70,9 +69,9 @@ public class ValorMedioSQL extends IniciaBanco {
                 ResultSet rs = stmt.executeQuery();
 
                 while (rs.next()) {
-                    UUID ide = UUID.fromString(rs.getString("id"));
+                    int ide = rs.getInt("id");
                     String cidade = rs.getString("cidade");
-                    Integer estacao = rs.getInt("estacao");
+                    String estacao = rs.getString("estacao");
                     LocalDate data = rs.getDate("data").toLocalDate();
                     LocalTime hora = rs.getTime("hora").toLocalTime();
                     Double temperaturaMedia = rs.getDouble("temperaturaMedia");

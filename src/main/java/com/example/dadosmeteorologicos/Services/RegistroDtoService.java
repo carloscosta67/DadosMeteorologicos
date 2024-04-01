@@ -47,7 +47,7 @@ public class RegistroDtoService {
         List<RegistroDto> registros = new ArrayList<>();
         for (String[] linha : csvFiltrado) {
             String codigoCidade = linha[0];
-            Integer codigoEstacao = Integer.parseInt(linha[1]);
+            String codigoEstacao = linha[1];
             LocalDate data = LocalDate.parse(linha[2], formatoData);
             LocalTime hora = LocalTime.parse(linha[3], formatoHora);
             Double temperaturaMedia = tentarParseDouble(linha[4]);

@@ -8,10 +8,10 @@ import com.example.dadosmeteorologicos.Services.CSVResolve;
 import com.example.dadosmeteorologicos.Services.LeitorCsvService;
 import com.example.dadosmeteorologicos.Services.RegistroDtoService;
 import com.example.dadosmeteorologicos.exceptions.CSVInvalidoException;
-import com.example.dadosmeteorologicos.exceptions.NomeCSVInvalidoException;
 import com.example.dadosmeteorologicos.model.RegistroDto;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
@@ -34,37 +34,15 @@ public class LeitorCsvController {
     protected Button salvarCsvButton;
     @FXML
     private Button selecionarArquivo;
+
+    private String siglaCidadeInserida;
+    private String numeroEstacaoInserido;
     
     @FXML
     public void initialize() {
         System.out.println("Iniciado Leitor CSV");
         salvarCsvButton.setVisible(false);
     }
-
-    // Botão que faz o processo de validar CSV, ler e salvar no banco
-    public void salvarBanco(ActionEvent actionEvent) {
-        CSVResolve leitor = new CSVResolve(caminhoArquivo);
-        try {
-            leitor.validarCSV();
-        } catch (CSVInvalidoException e) {
-            // Se a validação do CSV falhar, mostre a caixa de diálogo de erro e retorna para escolher novamente o arquivo
-            mostrarDialogoCabecalhoCsvInvalido();
-                return;
-        } catch (NomeCSVInvalidoException e) {
-            //A FAZER: Deve ser criado uma metodo(funcao) para pegar o nome da cidade, sigla da cidade e numero da estacao e verificar 
-            // se existe no banco
-            // A FAZER: Deve ser solicitado ao usuário que insira o nome da cidade, sigla da cidade e número da estação e criar a cidade 
-            // no banco
-            Platform.runLater(this::mostrarDialogoNomeInvalido);
-            return;
-        } 
-            List<String[]> csvFiltrado = leitor.CsvFiltrado();
-            List<RegistroDto> listaRegistroDto = RegistroDtoService.criaRegistroDto(csvFiltrado);
-            LeitorCsvService service = new LeitorCsvService();
-            service.salvarRegistro(listaRegistroDto);        
-            System.out.println("foram salvos: " + listaRegistroDto.size() + " registros");
-    }
-        
 
     @FXML
     void selecionarCsv(ActionEvent event) {
@@ -82,17 +60,45 @@ public class LeitorCsvController {
         }
     }
 
+    // Botão que faz o processo de validar CSV, ler e salvar no banco
+    public void salvarBanco(ActionEvent actionEvent) {
+        CSVResolve leitor = new CSVResolve(caminhoArquivo);
+        try {
+            leitor.validarCSV();
+        } catch (CSVInvalidoException e) {
+            // Se a validação do CSV falhar, mostre a caixa de diálogo de erro e retorna para escolher novamente o arquivo
+            mostrarDialogoCabecalhoCsvInvalido();
+            return;
+        } 
+        if (leitor.isNomeInvalido()) {
+            Optional<String[]> result = mostrarDialogoNomeInvalido();
+            if (result.isPresent()) {
+                leitor.setCodigoCidade(siglaCidadeInserida);
+                leitor.setCodigoEstacao(numeroEstacaoInserido);
+            } else {
+                // O usuário cancelou o diálogo, lidar com isso aqui
+                return;
+            }
+
+        } 
+            //Caso entrar no catch do nome invalido, esse codigo deve aguardar para ser executado, pois o usuario deve inserir os dados:
+            List<String[]> csvFiltrado = leitor.filtrarCSV();
+            List<RegistroDto> listaRegistroDto = RegistroDtoService.criaRegistroDto(csvFiltrado);
+            LeitorCsvService service = new LeitorCsvService();
+            service.salvarRegistro(listaRegistroDto);        
+            System.out.println("foram salvos: " + listaRegistroDto.size() + " registros");
+    }
+        
     //Dialogos de validação
-    private void mostrarDialogoNomeInvalido() {
+    private Optional<String[]> mostrarDialogoNomeInvalido() {
         // Crie a caixa de diálogo personalizada
         Dialog<String[]> dialog = new Dialog<>();
-        dialog.setTitle("Nome inválido");
+        dialog.setTitle("Não foi possível identificar a cidade e a estação do arquivo CSV");
     
         // Crie os campos de entrada
         TextField CampoNomeCidade = new TextField();
         TextField CampoSiglaCidade = new TextField();
         TextField CampoNumeroEstacao = new TextField();
-     
     
         // Adicione os campos de entrada à caixa de diálogo
         GridPane grid = new GridPane();
@@ -107,29 +113,59 @@ public class LeitorCsvController {
         // Crie os botões de "Salvar" e "Sair"
         ButtonType buttonTypeSalvar = new ButtonType("Salvar", ButtonData.OK_DONE);
         ButtonType buttonTypeSair = new ButtonType("Sair", ButtonData.CANCEL_CLOSE);
+        // se apertar o buttonTypeSair ele deve fechar o dialogo e impedir o resto do codigo.
         dialog.getDialogPane().getButtonTypes().addAll(buttonTypeSalvar, buttonTypeSair);
-    
+        
+        // Obtenha o botão "Salvar" e inicialmente o desabilite
+        Button salvarButton = (Button) dialog.getDialogPane().lookupButton(buttonTypeSalvar);
+        salvarButton.setDisable(true);
+
+        // Ouvinte de propriedade que será acionado sempre que o texto em qualquer campo for alterado
+        ChangeListener<String> textChangeListener = (observable, oldValue, newValue) -> {
+            boolean allFieldsFilled = !CampoNomeCidade.getText().trim().isEmpty() &&
+                                    !CampoSiglaCidade.getText().trim().isEmpty() &&
+                                    !CampoNumeroEstacao.getText().trim().isEmpty();
+            salvarButton.setDisable(!allFieldsFilled);
+        };
+
+        // Ouvinte de propriedade aos campos de texto
+        CampoNomeCidade.textProperty().addListener(textChangeListener);
+        CampoSiglaCidade.textProperty().addListener(textChangeListener);
+        CampoNumeroEstacao.textProperty().addListener(textChangeListener);
+
         // Defina o resultado da caixa de diálogo para ser um array com os valores dos campos de entrada
         dialog.setResultConverter(dialogButton -> {
-            String[] result = new String[3];
-            result[0] = CampoNomeCidade.getText();
-            result[1] = CampoSiglaCidade.getText();
-            result[2] = CampoNumeroEstacao.getText();
-            return result;
+            if (dialogButton == buttonTypeSalvar) {
+                String[] result = new String[3];
+                result[0] = CampoNomeCidade.getText();
+                result[1] = CampoSiglaCidade.getText();
+                result[2] = CampoNumeroEstacao.getText();
+                return result;
+            }
+            return null;
         });
-    
+
         // Mostre a caixa de diálogo e obtenha o resultado
         Optional<String[]> result = dialog.showAndWait();
+
+        
         result.ifPresent(res -> {
             // Faça algo com os valores inseridos pelo usuário
             // Por exemplo, armazene-os em variáveis ou use-os para atualizar o arquivo CSV
-            String nomeCidade = res[0];
-            String siglaCidade = res[1];
-            String numeroEstacao = res[2];
+            String nomeCidadeInserido = res[0];
+            siglaCidadeInserida = res[1];
+            numeroEstacaoInserido = res[2];
+
+            // Verificar se a cidade e a estaçao já existem no banco de dados
+            LeitorCsvService service = new LeitorCsvService();
+            service.CriarCidadeEstacaoCsv(nomeCidadeInserido, siglaCidadeInserida, numeroEstacaoInserido);
+
+            //  Tem que verificar se deu tudo certo e mostrar para o usuario
     
-            System.out.println("Nome da cidade: " + nomeCidade + ", sigla da cidade: " 
-                + siglaCidade + ", número da estação: " + numeroEstacao);
+            System.out.println("Nome da cidade: " + nomeCidadeInserido + ", sigla da cidade: " 
+                + siglaCidadeInserida + ", número da estação: " + numeroEstacaoInserido);
         });
+        return result;
     }
 
     public void mostrarDialogoCabecalhoCsvInvalido(){

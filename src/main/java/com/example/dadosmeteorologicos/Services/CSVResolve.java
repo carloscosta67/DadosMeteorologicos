@@ -13,15 +13,28 @@ import java.util.regex.Pattern;
 import com.example.dadosmeteorologicos.exceptions.CSVInvalidoException;
 import com.example.dadosmeteorologicos.exceptions.NomeCSVInvalidoException;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.HashMap;
 
 public class CSVResolve {
 
     private String caminhoCSV;
-    List<String[]> csvFiltrado = new ArrayList<>();
+    
+    private List<String[]> csvPadronizado = new ArrayList<>();
+    @Getter
+    @Setter
     private boolean automatico = true;
+    @Getter
+    private boolean nomeInvalido = false;
+    @Getter
+    @Setter
     private String codigoEstacao = "";
+    @Getter
+    @Setter
     private String codigoCidade = "";
+    private String[] cabecalhoCSV = null;
     private Map<String, Integer> camposAutomatico = new HashMap<>();
     private Map<String, Integer> camposManual = new HashMap<>();
 
@@ -31,27 +44,23 @@ public class CSVResolve {
     }
 
 
-    public boolean validarCSV() throws NomeCSVInvalidoException, CSVInvalidoException{
+    public boolean validarCSV() throws CSVInvalidoException{
         inicializarHashMap();
-        lerNomeCSV();
-        // Antes de retornar o csv padronizado ele testa para verificar se o cabeçalho é válido
-        List<String[]> csvPadronizado = lerCSV();
-        csvFiltrado = filtrarCSV(csvPadronizado);
+        try{
+            lerNomeCSV();
+        } catch(NomeCSVInvalidoException e){
+            nomeInvalido = true;
+        }
+        lerCSV();
         return true;
     }
 
-    public List<String[]> CsvFiltrado() {
-        return csvFiltrado;
-    }
-
-    public List<String[]> lerCSV() throws CSVInvalidoException{
-        
-        List<String[]> csvPadronizado = new ArrayList<>();
-        String[] cabecalhoCSV = null;
+    public void lerCSV() throws CSVInvalidoException{
         try {
             BufferedReader br = new BufferedReader(new FileReader(caminhoCSV));
     
             String linha;
+            int linhaAtual = 0;
             while ((linha = br.readLine()) != null) {
                 String[] dados = linha.split(";", -1);
                 for(int i = 0; i < dados.length; i++){
@@ -59,12 +68,15 @@ public class CSVResolve {
                     dados[i] = dados[i].replace(",", ".");
                     dados[i] = dados[i].replace(",", ".");
                     dados[i] = dados[i].replace("ï»¿", "");
-                    if (i == 0) {
-                        cabecalhoCSV = dados; 
-                    }
                 }
-                csvPadronizado.add(dados);
+                if (linhaAtual == 0) {
+                        cabecalhoCSV = dados; 
+                        linhaAtual++;
+                    }
+                
+                    csvPadronizado.add(dados);
             }
+            System.out.println("Tamanho do CSV padronizado em ler csv: " + csvPadronizado.size());
             br.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -72,12 +84,13 @@ public class CSVResolve {
         if (!validarCabecalho(cabecalhoCSV)) {
             throw new CSVInvalidoException("O arquivo CSV não possui o cabeçalho esperado.");
         }
-        return csvPadronizado;
     }
 
- private List<String[]> filtrarCSV(List<String[]> csvPadronizado){
+ public List<String[]> filtrarCSV(){
         List<String[]> filtrarCSVPadronizado = new ArrayList<>();
-        
+        System.out.println("codigo cidade: " + codigoCidade);
+        System.out.println("Automatico: " + automatico);
+        System.out.println("Tamanho padronizado: " + csvPadronizado.size());
         int ignorarCabecalho = 0;
         for (String[] linha : csvPadronizado) {
             if (ignorarCabecalho == 0 && linha.length > 0) {
@@ -148,18 +161,23 @@ public class CSVResolve {
     }
 
     private boolean validarCabecalho(String[] cabecalho){
-        Map<String, Integer> camposEsperados = definirCamposEsperados();
+        boolean cabecalhoValidoAutomatico = validarCabecalhoComCampos(cabecalho, camposAutomatico);
+        boolean cabecalhoValidoManual = validarCabecalhoComCampos(cabecalho, camposManual);
+        if (cabecalhoValidoManual) {
+            automatico = false;
+        }
+        return cabecalhoValidoAutomatico || cabecalhoValidoManual;
+    }
+
+    private boolean validarCabecalhoComCampos(String[] cabecalho, Map<String, Integer> camposEsperados) {
         for (String campoEsperado : camposEsperados.keySet()) {
             Integer posicaoEsperada = camposEsperados.get(campoEsperado);
             if(!cabecalho[posicaoEsperada].equals(campoEsperado)) {
+                System.out.println("Campo esperado: " + campoEsperado + " na posição: " + cabecalho[posicaoEsperada] + " não encontrado.");
                 return false;   
             }
         }
         return true;
-    }
-
-    private  Map<String, Integer> definirCamposEsperados(){
-        return automatico ? camposAutomatico : camposManual;
     }
 
     private void inicializarHashMap(){

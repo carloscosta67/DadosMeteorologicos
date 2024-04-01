@@ -12,4 +12,10 @@ public class LeitorCsvService {
         banco.salvarRegistro(listaRegistroDto);
         banco.fecharConexao();
     }
+
+    public void CriarCidadeEstacaoCsv(String nomeCidadeInserido, String siglaCidadeInserida, String numeroEstacaoInserido){
+        LeitorCsvSQL banco = new LeitorCsvSQL();
+        banco.CriarCidadeEstacaoCsv(nomeCidadeInserido, siglaCidadeInserida, numeroEstacaoInserido);
+        banco.fecharConexao();
+    }
 }

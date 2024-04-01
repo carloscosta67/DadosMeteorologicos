@@ -9,7 +9,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import com.example.dadosmeteorologicos.model.RegistroDto;
 
@@ -55,9 +54,9 @@ public class IniciaBanco {
                 System.out.println("Banco Iniciado");
     
                 String sql = "CREATE TABLE IF NOT EXISTS Registro (" +
-                    "id UUID PRIMARY KEY," +
+                    "id SERIAL PRIMARY KEY," +
                     "cidade VARCHAR(255)," +
-                    "estacao INT," +
+                    "estacao VARCHAR(255)," +
                     "data DATE," +
                     "hora TIME," +
                     "temperaturaMedia DECIMAL(5,2)," +
@@ -96,9 +95,9 @@ public class IniciaBanco {
                 ResultSet rs = stmt.executeQuery(sql);
 
                 while (rs.next()) {
-                    UUID id = UUID.fromString(rs.getString("id"));
+                    int id = rs.getInt("id");
                     String cidade = rs.getString("cidade");
-                    Integer estacao = rs.getInt("estacao");
+                    String estacao = rs.getString("estacao");
                     LocalDate data = rs.getDate("data").toLocalDate();
                     LocalTime hora = rs.getTime("hora").toLocalTime();
                     Double temperaturaMedia = rs.getDouble("temperaturaMedia");
@@ -132,9 +131,9 @@ public class IniciaBanco {
                 ResultSet rs = stmt.executeQuery(sql);
 
                 while (rs.next()) {
-                    UUID id = UUID.fromString(rs.getString("id"));
+                    int ide = rs.getInt("id");
                     String cidade = rs.getString("cidade");
-                    Integer estacao = rs.getInt("estacao");
+                    String estacao = rs.getString("estacao");
                     LocalDate data = rs.getDate("data").toLocalDate();
                     LocalTime hora = rs.getTime("hora").toLocalTime();
                     Double temperaturaMedia = rs.getDouble("temperaturaMedia");
@@ -148,7 +147,7 @@ public class IniciaBanco {
                     Boolean direcaoVentoSuspeita = rs.getBoolean("direcaoVentoSuspeita");
                     Boolean chuvaSuspeita = rs.getBoolean("chuvaSuspeita");
 
-                    RegistroDto registro = new RegistroDto(id, cidade, estacao, data, hora, temperaturaMedia, umidadeMedia, velVento, dirVento, chuva, temperaturaSuspeita, umidadeSuspeita, velocidadeVentoSuspeita, direcaoVentoSuspeita, chuvaSuspeita);
+                    RegistroDto registro = new RegistroDto(ide, cidade, estacao, data, hora, temperaturaMedia, umidadeMedia, velVento, dirVento, chuva, temperaturaSuspeita, umidadeSuspeita, velocidadeVentoSuspeita, direcaoVentoSuspeita, chuvaSuspeita);
                     System.out.println(registro);
                 }
             }
@@ -157,5 +156,17 @@ public class IniciaBanco {
         }
         return registros;
     }
+
+//     CREATE TABLE cidade (
+//     id SERIAL PRIMARY KEY,
+//     nome VARCHAR(255),
+//     sigla CHARACTER(4)
+// );
+
+// CREATE TABLE estacao (
+//     id SERIAL PRIMARY KEY,
+//     numero VARCHAR(255),
+//     idCidade INT
+// );
    
 }

@@ -76,7 +76,6 @@ public class CSVResolve {
                 
                     csvPadronizado.add(dados);
             }
-            System.out.println("Tamanho do CSV padronizado em ler csv: " + csvPadronizado.size());
             br.close();
         } catch (IOException e) {
             e.printStackTrace();

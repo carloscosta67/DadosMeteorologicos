@@ -79,7 +79,6 @@ public class LeitorCsvController {
                 // O usuário cancelou o diálogo, lidar com isso aqui
                 return;
             }
-
         } 
             //Caso entrar no catch do nome invalido, esse codigo deve aguardar para ser executado, pois o usuario deve inserir os dados:
             List<String[]> csvFiltrado = leitor.filtrarCSV();

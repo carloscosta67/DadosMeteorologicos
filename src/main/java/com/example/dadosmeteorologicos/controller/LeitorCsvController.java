@@ -87,11 +87,8 @@ public class LeitorCsvController {
             return;
         }
 
-        //Caso entrar no catch do nome invalido, esse codigo deve aguardar para ser executado, pois o usuario deve inserir os dados:
-        List<String[]> csvFiltrado = leitor.filtrarCSV();
-        
+        List<String[]> csvFiltrado = leitor.filtrarCSV();       
         List<RegistroDto> listaRegistroDto = RegistroDtoService.criaRegistroDto(csvFiltrado);
-        
         int registrosSuspeitos = service.registrosSuspeitos(listaRegistroDto);
         int[] salvoDuplicado = new int[2];
         salvoDuplicado = service.salvarRegistro(listaRegistroDto);
@@ -101,13 +98,13 @@ public class LeitorCsvController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Informação de Registro");
         alert.setHeaderText(null);
-        alert.setContentText("Foram salvos " + salvos + " registros e duplicados: " 
-                + duplicados + " na cidade: " + nomeCidade + " com " + registrosSuspeitos + 
-                " registros suspeitos");
+        alert.setContentText( "Cidade processada: " + nomeCidade + ".\n" +
+        "Estação processada: " + numeroEstacao + ".\n" +
+        "Total de registros processados: " + listaRegistroDto.size() + ".\n" +
+        "Registros salvos com sucesso: " + salvos + ".\n" +
+        "Registros duplicados encontrados: " + duplicados + ".\n" +
+        "Registros suspeitos encontrados: " + registrosSuspeitos + ".");
         alert.showAndWait();     
-        System.out.println("foram salvos " + salvos + " registros e duplicados: " 
-        + duplicados + " na cidade: " + nomeCidade + " com " + registrosSuspeitos + 
-        " registros suspeitos");
     }
 
     public void validarCidadeEstacao(boolean nomeInvalido) {

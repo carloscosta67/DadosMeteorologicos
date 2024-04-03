@@ -8,6 +8,7 @@ module com.example.dadosmeteorologicos {
     requires com.almasb.fxgl.all;
     requires com.opencsv;
     requires java.sql;
+    requires org.apache.commons.text;
 
     opens com.example.dadosmeteorologicos to javafx.fxml;
     opens com.example.dadosmeteorologicos.model to javafx.base;

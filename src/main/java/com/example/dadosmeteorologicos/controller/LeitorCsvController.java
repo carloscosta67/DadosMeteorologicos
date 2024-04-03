@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.commons.text.WordUtils;
+
 import com.example.dadosmeteorologicos.Services.CSVResolve;
 import com.example.dadosmeteorologicos.Services.LeitorCsvService;
 import com.example.dadosmeteorologicos.Services.RegistroDtoService;
@@ -23,6 +25,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -35,13 +38,22 @@ public class LeitorCsvController {
     @FXML
     private Button selecionarArquivo;
 
+    private CSVResolve leitor;
+    private LeitorCsvService service;
+
     private String siglaCidadeInserida;
     private String numeroEstacaoInserido;
-    
+    private String nomeCidadeInserido;
+    private String nomeCidade;
+    private String siglaCidade;
+    private String numeroEstacao;
+    private boolean cidadeEstacaoValida;
+
     @FXML
     public void initialize() {
         System.out.println("Iniciado Leitor CSV");
         salvarCsvButton.setVisible(false);
+        service = new LeitorCsvService();
     }
 
     @FXML
@@ -62,7 +74,7 @@ public class LeitorCsvController {
 
     // Botão que faz o processo de validar CSV, ler e salvar no banco
     public void salvarBanco(ActionEvent actionEvent) {
-        CSVResolve leitor = new CSVResolve(caminhoArquivo);
+        leitor = new CSVResolve(caminhoArquivo);
         try {
             leitor.validarCSV();
         } catch (CSVInvalidoException e) {
@@ -70,22 +82,102 @@ public class LeitorCsvController {
             mostrarDialogoCabecalhoCsvInvalido();
             return;
         } 
-        if (leitor.isNomeInvalido()) {
+        validarCidadeEstacao(leitor.isNomeInvalido());
+        if (!cidadeEstacaoValida) {
+            return;
+        }
+
+        //Caso entrar no catch do nome invalido, esse codigo deve aguardar para ser executado, pois o usuario deve inserir os dados:
+        List<String[]> csvFiltrado = leitor.filtrarCSV();
+        
+        List<RegistroDto> listaRegistroDto = RegistroDtoService.criaRegistroDto(csvFiltrado);
+        
+        int registrosSuspeitos = service.registrosSuspeitos(listaRegistroDto);
+        int[] salvoDuplicado = new int[2];
+        salvoDuplicado = service.salvarRegistro(listaRegistroDto);
+        int salvos = salvoDuplicado[0];
+        int duplicados = salvoDuplicado[1];
+        String nomeCidade = service.ObterNomeCidade(siglaCidade);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Informação de Registro");
+        alert.setHeaderText(null);
+        alert.setContentText("Foram salvos " + salvos + " registros e duplicados: " 
+                + duplicados + " na cidade: " + nomeCidade + " com " + registrosSuspeitos + 
+                " registros suspeitos");
+        alert.showAndWait();     
+        System.out.println("foram salvos " + salvos + " registros e duplicados: " 
+        + duplicados + " na cidade: " + nomeCidade + " com " + registrosSuspeitos + 
+        " registros suspeitos");
+    }
+
+    public void validarCidadeEstacao(boolean nomeInvalido) {
+        if (nomeInvalido) {
             Optional<String[]> result = mostrarDialogoNomeInvalido();
             if (result.isPresent()) {
                 leitor.setCodigoCidade(siglaCidadeInserida);
                 leitor.setCodigoEstacao(numeroEstacaoInserido);
-            } else {
-                // O usuário cancelou o diálogo, lidar com isso aqui
-                return;
-            }
-        } 
-            //Caso entrar no catch do nome invalido, esse codigo deve aguardar para ser executado, pois o usuario deve inserir os dados:
-            List<String[]> csvFiltrado = leitor.filtrarCSV();
-            List<RegistroDto> listaRegistroDto = RegistroDtoService.criaRegistroDto(csvFiltrado);
-            LeitorCsvService service = new LeitorCsvService();
-            service.salvarRegistro(listaRegistroDto);        
-            System.out.println("foram salvos: " + listaRegistroDto.size() + " registros");
+                nomeCidade = nomeCidadeInserido;
+                siglaCidade= leitor.getCodigoCidade();
+                numeroEstacao = leitor.getCodigoEstacao();
+                validarCidadeEstacao(siglaCidade, numeroEstacao);
+                if (!cidadeEstacaoValida) {
+                    return;
+                }
+                verificarCidadeExiste(siglaCidade, nomeCidade);
+                verificarEstacaoExiste(numeroEstacao, siglaCidade);
+            } 
+        }else{
+                siglaCidade= leitor.getCodigoCidade();
+                numeroEstacao = leitor.getCodigoEstacao();
+                validarCidadeEstacao(siglaCidade, numeroEstacao);
+                if (!cidadeEstacaoValida) {
+                    return;
+                }
+                if (!service.verificarCidadeExiste(siglaCidade)) {
+                    
+                    // Se a cidade não existir, peça ao usuário para inserir o nome da cidade
+                    TextInputDialog dialog = new TextInputDialog();
+                    dialog.setTitle("Nome da Cidade");
+                    dialog.setHeaderText("A sigla da cidade não existe no banco de dados.");
+                    dialog.setContentText("Insira o nome da cidade para a sigla "+ siglaCidade+ ":" );
+        
+                    Optional<String> result = dialog.showAndWait();
+                    if (result.isPresent()){
+                        nomeCidade = result.get();
+                    }
+                    service.criarCidade(nomeCidade, siglaCidade);
+                }   
+                System.out.println("Sigla cidade: " + siglaCidade + " estacao: " + numeroEstacao);  
+                verificarEstacaoExiste(numeroEstacao, siglaCidade);
+                
+                
+
+        }     
+    }
+
+    public void verificarCidadeExiste(String siglaCidade, String nomeCidade){
+        if (!service.verificarCidadeExiste(siglaCidade)) {
+            service.criarCidade(nomeCidade, siglaCidade);
+        }
+    }
+
+    private void verificarEstacaoExiste(String numeroEstacao, String siglaCidade) {
+        if(!service.verificarEstacaoExiste(numeroEstacao)){
+            service.criarEstacao(numeroEstacao, siglaCidade);
+        }
+    } 
+
+    private void validarCidadeEstacao(String siglaCidade, String numeroEstacao) {
+        if(!service.validarCidadeEstacao(siglaCidade, numeroEstacao)){
+            cidadeEstacaoValida =  false;
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setHeaderText(null);
+            alert.setContentText("Cidade e estação não correspondem");
+            alert.showAndWait();
+            return;
+        }
+        cidadeEstacaoValida =  true;
     }
         
     //Dialogos de validação
@@ -151,18 +243,9 @@ public class LeitorCsvController {
         result.ifPresent(res -> {
             // Faça algo com os valores inseridos pelo usuário
             // Por exemplo, armazene-os em variáveis ou use-os para atualizar o arquivo CSV
-            String nomeCidadeInserido = res[0];
-            siglaCidadeInserida = res[1];
+            nomeCidadeInserido = res[0];
+            siglaCidadeInserida = WordUtils.capitalizeFully(res[1]);
             numeroEstacaoInserido = res[2];
-
-            // Verificar se a cidade e a estaçao já existem no banco de dados
-            LeitorCsvService service = new LeitorCsvService();
-            service.CriarCidadeEstacaoCsv(nomeCidadeInserido, siglaCidadeInserida, numeroEstacaoInserido);
-
-            //  Tem que verificar se deu tudo certo e mostrar para o usuario
-    
-            System.out.println("Nome da cidade: " + nomeCidadeInserido + ", sigla da cidade: " 
-                + siglaCidadeInserida + ", número da estação: " + numeroEstacaoInserido);
         });
         return result;
     }

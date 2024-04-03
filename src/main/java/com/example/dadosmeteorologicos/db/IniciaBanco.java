@@ -49,6 +49,12 @@ public class IniciaBanco {
     }
 
     public void iniciarBanco(){
+       criarTabelaRegistro();
+       criarTabelaCidade();
+       criarTabelaEstacao();
+    }
+
+    private void criarTabelaRegistro(){
         try {
             if (conn != null) {
                 System.out.println("Banco Iniciado");
@@ -68,7 +74,10 @@ public class IniciaBanco {
                     "umidadeSuspeita BOOLEAN," +
                     "velocidadeVentoSuspeita BOOLEAN," +
                     "direcaoVentoSuspeita BOOLEAN," +
-                    "chuvaSuspeita BOOLEAN" +
+                    "chuvaSuspeita BOOLEAN," +
+                    //garante que não possam existir duas linhas na tabela 
+                    //Registro com a mesma combinação de estacao, data e hora.
+                    "UNIQUE (estacao, data, hora)"+
                     ")";
     
                 Statement stmt = conn.createStatement();
@@ -79,48 +88,43 @@ public class IniciaBanco {
             }
         } catch (SQLException e) {
             System.err.format("SQL Stateee: %s\n%s", e.getSQLState(), e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        } 
     }
 
-    public List<RegistroDto> selecionarTodosRegistros() {
-        List<RegistroDto> registros = new ArrayList<>();
-
+    private void criarTabelaCidade() {
         try {
             if (conn != null) {
-                String sql = "SELECT * FROM Registro";
-
+                String sql = "CREATE TABLE IF NOT EXISTS Cidade (" +
+                    "id SERIAL PRIMARY KEY," +
+                    "nome VARCHAR(255)," +
+                    "sigla CHARACTER(6)" +
+                    ")";
+    
                 Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery(sql);
-
-                while (rs.next()) {
-                    int id = rs.getInt("id");
-                    String cidade = rs.getString("cidade");
-                    String estacao = rs.getString("estacao");
-                    LocalDate data = rs.getDate("data").toLocalDate();
-                    LocalTime hora = rs.getTime("hora").toLocalTime();
-                    Double temperaturaMedia = rs.getDouble("temperaturaMedia");
-                    Double umidadeMedia = rs.getDouble("umidadeMedia");
-                    Double velVento = rs.getDouble("velVento");
-                    Double dirVento = rs.getDouble("dirVento");
-                    Double chuva = rs.getDouble("chuva");
-                    boolean temperaturaSuspeita = rs.getBoolean("temperaturaSuspeita");
-                    boolean umidadeSuspeita = rs.getBoolean("umidadeSuspeita");
-                    boolean velocidadeVentoSuspeita = rs.getBoolean("velocidadeVentoSuspeita");
-                    boolean direcaoVentoSuspeita = rs.getBoolean("direcaoVentoSuspeita");
-                    boolean chuvaSuspeita = rs.getBoolean("chuvaSuspeita");
-
-                    RegistroDto registro = new RegistroDto(id, cidade, estacao, data, hora, temperaturaMedia, umidadeMedia, velVento, dirVento, chuva, temperaturaSuspeita, umidadeSuspeita, velocidadeVentoSuspeita, direcaoVentoSuspeita, chuvaSuspeita);
-                    registros.add(registro);
-                }
+                stmt.execute(sql);
             }
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         }
-        return registros;
-    }   
+    }
 
+    private void criarTabelaEstacao() {
+        try {
+            if (conn != null) {
+                String sql = "CREATE TABLE IF NOT EXISTS Estacao (" +
+                    "id SERIAL PRIMARY KEY," +
+                    "nome VARCHAR(255)," +
+                    "siglaCidade CHARACTER(6)" +
+                    ")";
+    
+                Statement stmt = conn.createStatement();
+                stmt.execute(sql);
+            }
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        }
+    }
+   
     public List<RegistroDto> selecionarTodosRegistrosSuspeitos(){
         List<RegistroDto> registros = new ArrayList<>();
         try {
@@ -155,18 +159,5 @@ public class IniciaBanco {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         }
         return registros;
-    }
-
-//     CREATE TABLE cidade (
-//     id SERIAL PRIMARY KEY,
-//     nome VARCHAR(255),
-//     sigla CHARACTER(4)
-// );
-
-// CREATE TABLE estacao (
-//     id SERIAL PRIMARY KEY,
-//     numero VARCHAR(255),
-//     idCidade INT
-// );
-   
+    }   
 }

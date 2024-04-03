@@ -87,9 +87,6 @@ public class CSVResolve {
 
  public List<String[]> filtrarCSV(){
         List<String[]> filtrarCSVPadronizado = new ArrayList<>();
-        System.out.println("codigo cidade: " + codigoCidade);
-        System.out.println("Automatico: " + automatico);
-        System.out.println("Tamanho padronizado: " + csvPadronizado.size());
         int ignorarCabecalho = 0;
         for (String[] linha : csvPadronizado) {
             if (ignorarCabecalho == 0 && linha.length > 0) {
@@ -172,7 +169,6 @@ public class CSVResolve {
         for (String campoEsperado : camposEsperados.keySet()) {
             Integer posicaoEsperada = camposEsperados.get(campoEsperado);
             if(!cabecalho[posicaoEsperada].equals(campoEsperado)) {
-                System.out.println("Campo esperado: " + campoEsperado + " na posição: " + cabecalho[posicaoEsperada] + " não encontrado.");
                 return false;   
             }
         }

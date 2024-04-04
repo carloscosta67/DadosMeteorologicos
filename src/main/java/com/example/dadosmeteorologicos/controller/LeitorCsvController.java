@@ -57,7 +57,7 @@ public class LeitorCsvController {
     }
 
     @FXML
-    void selecionarCsv(ActionEvent event) {
+    public void selecionarCsv(ActionEvent event) {
         // Obtém a referência do Stage atual
         Stage stage = (Stage) selecionarArquivo.getScene().getWindow();
         FileChooser fileChooser = new FileChooser();
@@ -68,12 +68,14 @@ public class LeitorCsvController {
         caminhoArquivo = CsvEntrada.getAbsolutePath();
         if (caminhoArquivo != null) {
             System.out.println("Arquivo selecionado: " + caminhoArquivo);
+            validarCSV();
             salvarCsvButton.setVisible(true);
+        }else{
+            return;
         }
     }
 
-    // Botão que faz o processo de validar CSV, ler e salvar no banco
-    public void salvarBanco(ActionEvent actionEvent) {
+    private void validarCSV(){
         leitor = new CSVResolve(caminhoArquivo);
         try {
             leitor.validarCSV();
@@ -83,6 +85,15 @@ public class LeitorCsvController {
             return;
         } 
         validarCidadeEstacao(leitor.isNomeInvalido());
+        if (cidadeEstacaoValida) {
+            salvarBanco()
+        }   
+    }
+
+    // Botão que faz o processo de validar CSV, ler e salvar no banco
+    public void salvarBanco(ActionEvent actionEvent) {
+           
+
         if (!cidadeEstacaoValida) {
             return;
         }
@@ -146,13 +157,10 @@ public class LeitorCsvController {
                 }   
                 System.out.println("Sigla cidade: " + siglaCidade + " estacao: " + numeroEstacao);  
                 verificarEstacaoExiste(numeroEstacao, siglaCidade);
-                
-                
-
         }     
     }
 
-    public void verificarCidadeExiste(String siglaCidade, String nomeCidade){
+    private void verificarCidadeExiste(String siglaCidade, String nomeCidade){
         if (!service.verificarCidadeExiste(siglaCidade)) {
             service.criarCidade(nomeCidade, siglaCidade);
         }

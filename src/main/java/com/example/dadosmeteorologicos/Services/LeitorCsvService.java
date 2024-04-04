@@ -8,6 +8,7 @@ import com.example.dadosmeteorologicos.db.LeitorCsvSQL;
 import com.example.dadosmeteorologicos.model.RegistroDto;
 
 public class LeitorCsvService {    
+
     public int[] salvarRegistro(List<RegistroDto> listaRegistroDto){
         int[] salvoDuplicado = new int[2];
         LeitorCsvSQL banco = new LeitorCsvSQL();

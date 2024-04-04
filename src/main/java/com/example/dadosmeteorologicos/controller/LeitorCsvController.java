@@ -37,6 +37,8 @@ public class LeitorCsvController {
     protected Button salvarCsvButton;
     @FXML
     private Button selecionarArquivo;
+    @FXML
+    private Label infoLabel;
 
     private CSVResolve leitor;
     private LeitorCsvService service;
@@ -48,10 +50,17 @@ public class LeitorCsvController {
     private String siglaCidade;
     private String numeroEstacao;
     private boolean cidadeEstacaoValida;
+    private List<RegistroDto> listaRegistroDto;
+    private int registrosSuspeitos;
+    private int[] salvoDuplicado;
+    private int salvos;
+    private int duplicados;
+
 
     @FXML
     public void initialize() {
         System.out.println("Iniciado Leitor CSV");
+        infoLabel.setVisible(false);
         salvarCsvButton.setVisible(false);
         service = new LeitorCsvService();
     }
@@ -69,7 +78,11 @@ public class LeitorCsvController {
         if (caminhoArquivo != null) {
             System.out.println("Arquivo selecionado: " + caminhoArquivo);
             validarCSV();
-            salvarCsvButton.setVisible(true);
+            if (cidadeEstacaoValida) {
+                adquirirInfosCSV();
+                atualizarInformacoes();
+                salvarCsvButton.setVisible(true);
+            }
         }else{
             return;
         }
@@ -85,27 +98,30 @@ public class LeitorCsvController {
             return;
         } 
         validarCidadeEstacao(leitor.isNomeInvalido());
-        if (cidadeEstacaoValida) {
-            salvarBanco()
-        }   
+    }
+
+    private void adquirirInfosCSV(){ 
+        List<String[]> csvFiltrado = leitor.filtrarCSV();       
+        listaRegistroDto = RegistroDtoService.criaRegistroDto(csvFiltrado);
+        registrosSuspeitos = service.registrosSuspeitos(listaRegistroDto);
+        siglaCidade = siglaCidade.toUpperCase();
+        nomeCidade = service.ObterNomeCidade(siglaCidade);
+        nomeCidade = WordUtils.capitalizeFully(nomeCidade);
+    }
+
+    private void atualizarInformacoes() {
+        infoLabel.setVisible(true);
+        infoLabel.setText("Cidade processada: " + nomeCidade + ".\n" +
+                          "Estação processada: " + numeroEstacao + ".\n" +
+                          "Total de registros: " + listaRegistroDto.size() + ".\n" +
+                          "Registros suspeitos encontrados: " + registrosSuspeitos + ".");
     }
 
     // Botão que faz o processo de validar CSV, ler e salvar no banco
     public void salvarBanco(ActionEvent actionEvent) {
-           
-
-        if (!cidadeEstacaoValida) {
-            return;
-        }
-
-        List<String[]> csvFiltrado = leitor.filtrarCSV();       
-        List<RegistroDto> listaRegistroDto = RegistroDtoService.criaRegistroDto(csvFiltrado);
-        int registrosSuspeitos = service.registrosSuspeitos(listaRegistroDto);
-        int[] salvoDuplicado = new int[2];
         salvoDuplicado = service.salvarRegistro(listaRegistroDto);
-        int salvos = salvoDuplicado[0];
-        int duplicados = salvoDuplicado[1];
-        String nomeCidade = service.ObterNomeCidade(siglaCidade);
+        salvos = salvoDuplicado[0];
+        duplicados = salvoDuplicado[1];
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Informação de Registro");
         alert.setHeaderText(null);
@@ -118,13 +134,14 @@ public class LeitorCsvController {
         alert.showAndWait();     
     }
 
-    public void validarCidadeEstacao(boolean nomeInvalido) {
+    private void validarCidadeEstacao(boolean nomeInvalido) {
+        // Se o nome da cidade não puder ser identificado, peça ao usuário para inserir o nome da cidade
         if (nomeInvalido) {
             Optional<String[]> result = mostrarDialogoNomeInvalido();
             if (result.isPresent()) {
-                leitor.setCodigoCidade(siglaCidadeInserida);
-                leitor.setCodigoEstacao(numeroEstacaoInserido);
-                nomeCidade = nomeCidadeInserido;
+                leitor.setCodigoCidade(siglaCidadeInserida.trim());
+                leitor.setCodigoEstacao(numeroEstacaoInserido.trim());
+                nomeCidade = nomeCidadeInserido.trim();
                 siglaCidade= leitor.getCodigoCidade();
                 numeroEstacao = leitor.getCodigoEstacao();
                 validarCidadeEstacao(siglaCidade, numeroEstacao);
@@ -151,7 +168,7 @@ public class LeitorCsvController {
         
                     Optional<String> result = dialog.showAndWait();
                     if (result.isPresent()){
-                        nomeCidade = result.get();
+                        nomeCidade = result.get().trim();
                     }
                     service.criarCidade(nomeCidade, siglaCidade);
                 }   
@@ -178,7 +195,7 @@ public class LeitorCsvController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
             alert.setHeaderText(null);
-            alert.setContentText("Cidade e estação não correspondem");
+            alert.setContentText("Já existe uma cidade associada a essa estação.");
             alert.showAndWait();
             return;
         }
@@ -193,11 +210,15 @@ public class LeitorCsvController {
     
         // Crie os campos de entrada
         TextField CampoNomeCidade = new TextField();
+        CampoNomeCidade.setPrefWidth(200);
         TextField CampoSiglaCidade = new TextField();
+        CampoSiglaCidade.setPrefWidth(200);
         TextField CampoNumeroEstacao = new TextField();
+        CampoNumeroEstacao.setPrefWidth(200);
     
         // Adicione os campos de entrada à caixa de diálogo
         GridPane grid = new GridPane();
+        grid.setPrefWidth(400);
         grid.add(new Label("Nome da cidade:"), 0, 0);
         grid.add(CampoNomeCidade, 1, 0);
         grid.add(new Label("Sigla da cidade:"), 0, 1);

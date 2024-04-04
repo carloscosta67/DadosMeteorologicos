@@ -198,12 +198,12 @@ public class LeitorCsvSQL extends IniciaBanco{
                 ResultSet rs = stmt.executeQuery();
                 if (rs.next()) {
                     String siglaCidadeEstacao = rs.getString("siglaCidade");
+                    System.out.println("siglaCidadeEstacao " + siglaCidadeEstacao + " siglaCidade " + siglaCidade);
                     if(siglaCidadeEstacao.trim().equals(siglaCidade.trim())){
                         cidadeEstacaoValido = true;
                     }
                     
                 }
-                cidadeEstacaoValido = true;
             }
         } catch (SQLException e) {
             System.err.format("validarCidadeEstacao SQL State: %s\n%s", e.getSQLState(), e.getMessage());

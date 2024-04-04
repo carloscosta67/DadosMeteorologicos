@@ -2224,3 +2224,30 @@
   <thread>17</thread>
   <message>Aplicativo iniciado</message>
 </record>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-04-04T04:54:10.025419800Z</date>
+  <millis>1712206450025</millis>
+  <nanos>419800</nanos>
+  <sequence>0</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Banco de dados inicializado</message>
+</record>
+<record>
+  <date>2024-04-04T04:54:10.985419300Z</date>
+  <millis>1712206450985</millis>
+  <nanos>419300</nanos>
+  <sequence>3</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Aplicativo iniciado</message>
+</record>

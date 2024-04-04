@@ -111,7 +111,7 @@ public class LeitorCsvController {
 
     private void atualizarInformacoes() {
         infoLabel.setVisible(true);
-        infoLabel.setText("Cidade processada: " + nomeCidade + ".\n" +
+        infoLabel.setText("Cidade processada: "  + nomeCidade + " - "+ siglaCidade + ".\n" +
                           "Estação processada: " + numeroEstacao + ".\n" +
                           "Total de registros: " + listaRegistroDto.size() + ".\n" +
                           "Registros suspeitos encontrados: " + registrosSuspeitos + ".");
@@ -125,7 +125,7 @@ public class LeitorCsvController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Informação de Registro");
         alert.setHeaderText(null);
-        alert.setContentText( "Cidade processada: " + nomeCidade + ".\n" +
+        alert.setContentText( "Cidade processada: " + nomeCidade + " - "+ siglaCidade + ".\n" +
         "Estação processada: " + numeroEstacao + ".\n" +
         "Total de registros processados: " + listaRegistroDto.size() + ".\n" +
         "Registros salvos com sucesso: " + salvos + ".\n" +
@@ -195,7 +195,7 @@ public class LeitorCsvController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
             alert.setHeaderText(null);
-            alert.setContentText("Já existe uma cidade associada a essa estação.");
+            alert.setContentText("Já existe uma cidade associada a essa estação" + numeroEstacao + ".");
             alert.showAndWait();
             return;
         }

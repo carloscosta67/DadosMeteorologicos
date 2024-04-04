@@ -195,7 +195,7 @@ public class LeitorCsvController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
             alert.setHeaderText(null);
-            alert.setContentText("Já existe uma cidade associada a essa estação" + numeroEstacao + ".");
+            alert.setContentText("Já existe uma cidade associada a estação " + numeroEstacao + ".");
             alert.showAndWait();
             return;
         }

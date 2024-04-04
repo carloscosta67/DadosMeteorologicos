@@ -200,9 +200,10 @@ public class LeitorCsvSQL extends IniciaBanco{
                     String siglaCidadeEstacao = rs.getString("siglaCidade");
                     System.out.println("siglaCidadeEstacao " + siglaCidadeEstacao + " siglaCidade " + siglaCidade);
                     if(siglaCidadeEstacao.trim().equals(siglaCidade.trim())){
-                        cidadeEstacaoValido = true;
-                    }
-                    
+                        cidadeEstacaoValido = false;
+                    }              
+                }else{
+                    cidadeEstacaoValido = true;
                 }
             }
         } catch (SQLException e) {

@@ -24,8 +24,8 @@ Criar uma solução computacional (CRUD) de um sistema de gerenciamento de relat
 
 - **Tratamento de registros suspeitos:** Permitir exclusão ou revisão. Deve ser possível alterar os valores e passá-los à base de dados principal ou excluí-los.
 
-### Requisitos Não Funcionais:
+### Tecnologias:
 
 - **Linguagem:** Java.
-- **Banco de Dados:** Relacional.
+- **Banco de Dados:** PostgreSQL.
 - **Documentação:** Manual de usuário, diagrama entidade-relacionamento e instruções de instalação.

@@ -2441,3 +2441,739 @@
   <message>Aplicativo iniciado</message>
 </record>
 </log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-04-05T23:51:48.312089Z</date>
+  <millis>1712361108312</millis>
+  <nanos>89000</nanos>
+  <sequence>0</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Banco de dados inicializado</message>
+</record>
+<record>
+  <date>2024-04-05T23:51:49.776696500Z</date>
+  <millis>1712361109776</millis>
+  <nanos>696500</nanos>
+  <sequence>3</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Aplicativo iniciado</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-04-06T01:43:05.642430300Z</date>
+  <millis>1712367785642</millis>
+  <nanos>430300</nanos>
+  <sequence>0</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Banco de dados inicializado</message>
+</record>
+<record>
+  <date>2024-04-06T01:43:06.893506300Z</date>
+  <millis>1712367786893</millis>
+  <nanos>506300</nanos>
+  <sequence>3</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Aplicativo iniciado</message>
+</record>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-04-06T22:36:17.829587300Z</date>
+  <millis>1712442977829</millis>
+  <nanos>587300</nanos>
+  <sequence>0</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Banco de dados inicializado</message>
+</record>
+<record>
+  <date>2024-04-06T22:36:19.057582500Z</date>
+  <millis>1712442979057</millis>
+  <nanos>582500</nanos>
+  <sequence>3</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Aplicativo iniciado</message>
+</record>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-04-06T22:37:44.201827600Z</date>
+  <millis>1712443064201</millis>
+  <nanos>827600</nanos>
+  <sequence>0</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Banco de dados inicializado</message>
+</record>
+<record>
+  <date>2024-04-06T22:37:45.545824700Z</date>
+  <millis>1712443065545</millis>
+  <nanos>824700</nanos>
+  <sequence>3</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Aplicativo iniciado</message>
+</record>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-04-06T22:38:26.754967100Z</date>
+  <millis>1712443106754</millis>
+  <nanos>967100</nanos>
+  <sequence>0</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Banco de dados inicializado</message>
+</record>
+<record>
+  <date>2024-04-06T22:38:27.859963300Z</date>
+  <millis>1712443107859</millis>
+  <nanos>963300</nanos>
+  <sequence>3</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Aplicativo iniciado</message>
+</record>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-04-06T22:40:17.835202300Z</date>
+  <millis>1712443217835</millis>
+  <nanos>202300</nanos>
+  <sequence>0</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Banco de dados inicializado</message>
+</record>
+<record>
+  <date>2024-04-06T22:40:19.004201800Z</date>
+  <millis>1712443219004</millis>
+  <nanos>201800</nanos>
+  <sequence>3</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Aplicativo iniciado</message>
+</record>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-04-06T22:40:57.590115400Z</date>
+  <millis>1712443257590</millis>
+  <nanos>115400</nanos>
+  <sequence>0</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Banco de dados inicializado</message>
+</record>
+<record>
+  <date>2024-04-06T22:40:58.777114Z</date>
+  <millis>1712443258777</millis>
+  <nanos>114000</nanos>
+  <sequence>3</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Aplicativo iniciado</message>
+</record>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-04-06T22:41:49.175743Z</date>
+  <millis>1712443309175</millis>
+  <nanos>743000</nanos>
+  <sequence>0</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Banco de dados inicializado</message>
+</record>
+<record>
+  <date>2024-04-06T22:41:50.416743900Z</date>
+  <millis>1712443310416</millis>
+  <nanos>743900</nanos>
+  <sequence>3</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Aplicativo iniciado</message>
+</record>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-04-06T22:43:05.398923500Z</date>
+  <millis>1712443385398</millis>
+  <nanos>923500</nanos>
+  <sequence>0</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Banco de dados inicializado</message>
+</record>
+<record>
+  <date>2024-04-06T22:43:07.527961400Z</date>
+  <millis>1712443387527</millis>
+  <nanos>961400</nanos>
+  <sequence>3</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Aplicativo iniciado</message>
+</record>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-04-06T22:43:23.121150800Z</date>
+  <millis>1712443403121</millis>
+  <nanos>150800</nanos>
+  <sequence>0</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Banco de dados inicializado</message>
+</record>
+<record>
+  <date>2024-04-06T22:43:24.278145Z</date>
+  <millis>1712443404278</millis>
+  <nanos>145000</nanos>
+  <sequence>3</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Aplicativo iniciado</message>
+</record>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-04-06T22:47:30.037135Z</date>
+  <millis>1712443650037</millis>
+  <nanos>135000</nanos>
+  <sequence>0</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Banco de dados inicializado</message>
+</record>
+<record>
+  <date>2024-04-06T22:47:31.276130800Z</date>
+  <millis>1712443651276</millis>
+  <nanos>130800</nanos>
+  <sequence>3</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Aplicativo iniciado</message>
+</record>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-04-06T22:48:42.669308600Z</date>
+  <millis>1712443722669</millis>
+  <nanos>308600</nanos>
+  <sequence>0</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Banco de dados inicializado</message>
+</record>
+<record>
+  <date>2024-04-06T22:48:44.104307200Z</date>
+  <millis>1712443724104</millis>
+  <nanos>307200</nanos>
+  <sequence>3</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Aplicativo iniciado</message>
+</record>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-04-06T22:52:18.544654100Z</date>
+  <millis>1712443938544</millis>
+  <nanos>654100</nanos>
+  <sequence>0</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Banco de dados inicializado</message>
+</record>
+<record>
+  <date>2024-04-06T22:52:19.915652600Z</date>
+  <millis>1712443939915</millis>
+  <nanos>652600</nanos>
+  <sequence>3</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Aplicativo iniciado</message>
+</record>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-04-06T22:59:45.871801300Z</date>
+  <millis>1712444385871</millis>
+  <nanos>801300</nanos>
+  <sequence>0</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Banco de dados inicializado</message>
+</record>
+<record>
+  <date>2024-04-06T22:59:47.394334400Z</date>
+  <millis>1712444387394</millis>
+  <nanos>334400</nanos>
+  <sequence>3</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Aplicativo iniciado</message>
+</record>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-04-06T23:01:45.364745900Z</date>
+  <millis>1712444505364</millis>
+  <nanos>745900</nanos>
+  <sequence>0</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Banco de dados inicializado</message>
+</record>
+<record>
+  <date>2024-04-06T23:01:46.640822Z</date>
+  <millis>1712444506640</millis>
+  <nanos>822000</nanos>
+  <sequence>3</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Aplicativo iniciado</message>
+</record>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-04-06T23:02:21.064522600Z</date>
+  <millis>1712444541064</millis>
+  <nanos>522600</nanos>
+  <sequence>0</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Banco de dados inicializado</message>
+</record>
+<record>
+  <date>2024-04-06T23:02:22.265587200Z</date>
+  <millis>1712444542265</millis>
+  <nanos>587200</nanos>
+  <sequence>3</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Aplicativo iniciado</message>
+</record>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-04-06T23:21:20.872217400Z</date>
+  <millis>1712445680872</millis>
+  <nanos>217400</nanos>
+  <sequence>0</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Banco de dados inicializado</message>
+</record>
+<record>
+  <date>2024-04-06T23:21:23.087034300Z</date>
+  <millis>1712445683087</millis>
+  <nanos>34300</nanos>
+  <sequence>3</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Aplicativo iniciado</message>
+</record>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-04-06T23:23:53.333255700Z</date>
+  <millis>1712445833333</millis>
+  <nanos>255700</nanos>
+  <sequence>0</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Banco de dados inicializado</message>
+</record>
+<record>
+  <date>2024-04-06T23:23:54.409785400Z</date>
+  <millis>1712445834409</millis>
+  <nanos>785400</nanos>
+  <sequence>3</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Aplicativo iniciado</message>
+</record>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-04-06T23:33:15.661984Z</date>
+  <millis>1712446395661</millis>
+  <nanos>984000</nanos>
+  <sequence>0</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Banco de dados inicializado</message>
+</record>
+<record>
+  <date>2024-04-06T23:33:17.308058700Z</date>
+  <millis>1712446397308</millis>
+  <nanos>58700</nanos>
+  <sequence>3</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Aplicativo iniciado</message>
+</record>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-04-06T23:33:47.723537900Z</date>
+  <millis>1712446427723</millis>
+  <nanos>537900</nanos>
+  <sequence>0</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Banco de dados inicializado</message>
+</record>
+<record>
+  <date>2024-04-06T23:33:49.083532900Z</date>
+  <millis>1712446429083</millis>
+  <nanos>532900</nanos>
+  <sequence>3</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Aplicativo iniciado</message>
+</record>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-04-07T19:19:09.549843Z</date>
+  <millis>1712517549549</millis>
+  <nanos>843000</nanos>
+  <sequence>0</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Banco de dados inicializado</message>
+</record>
+<record>
+  <date>2024-04-07T19:19:10.896371Z</date>
+  <millis>1712517550896</millis>
+  <nanos>371000</nanos>
+  <sequence>3</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Aplicativo iniciado</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-04-07T19:22:43.189880200Z</date>
+  <millis>1712517763189</millis>
+  <nanos>880200</nanos>
+  <sequence>0</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Banco de dados inicializado</message>
+</record>
+<record>
+  <date>2024-04-07T19:22:45.416891100Z</date>
+  <millis>1712517765416</millis>
+  <nanos>891100</nanos>
+  <sequence>3</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Aplicativo iniciado</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-04-07T19:23:37.857763700Z</date>
+  <millis>1712517817857</millis>
+  <nanos>763700</nanos>
+  <sequence>0</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Banco de dados inicializado</message>
+</record>
+<record>
+  <date>2024-04-07T19:23:39.662762100Z</date>
+  <millis>1712517819662</millis>
+  <nanos>762100</nanos>
+  <sequence>3</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Aplicativo iniciado</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-04-07T19:25:14.593516100Z</date>
+  <millis>1712517914593</millis>
+  <nanos>516100</nanos>
+  <sequence>0</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Banco de dados inicializado</message>
+</record>
+<record>
+  <date>2024-04-07T19:25:15.881057Z</date>
+  <millis>1712517915881</millis>
+  <nanos>57000</nanos>
+  <sequence>3</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Aplicativo iniciado</message>
+</record>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-04-07T19:27:42.666209300Z</date>
+  <millis>1712518062666</millis>
+  <nanos>209300</nanos>
+  <sequence>0</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Banco de dados inicializado</message>
+</record>
+<record>
+  <date>2024-04-07T19:27:43.751207200Z</date>
+  <millis>1712518063751</millis>
+  <nanos>207200</nanos>
+  <sequence>3</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Aplicativo iniciado</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-04-07T19:37:20.761797300Z</date>
+  <millis>1712518640761</millis>
+  <nanos>797300</nanos>
+  <sequence>0</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Banco de dados inicializado</message>
+</record>
+<record>
+  <date>2024-04-07T19:37:21.951795100Z</date>
+  <millis>1712518641951</millis>
+  <nanos>795100</nanos>
+  <sequence>3</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Aplicativo iniciado</message>
+</record>
+</log>
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-04-07T19:47:10.545252700Z</date>
+  <millis>1712519230545</millis>
+  <nanos>252700</nanos>
+  <sequence>0</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Banco de dados inicializado</message>
+</record>
+<record>
+  <date>2024-04-07T19:47:11.909567Z</date>
+  <millis>1712519231909</millis>
+  <nanos>567000</nanos>
+  <sequence>3</sequence>
+  <logger>com.example.dadosmeteorologicos.App</logger>
+  <level>INFO</level>
+  <class>com.example.dadosmeteorologicos.App</class>
+  <method>start</method>
+  <thread>17</thread>
+  <message>Aplicativo iniciado</message>
+</record>
+</log>

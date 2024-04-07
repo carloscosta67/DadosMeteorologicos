@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.example.dadosmeteorologicos.App;
 import com.example.dadosmeteorologicos.Services.ValorMedioService;
-import com.example.dadosmeteorologicos.model.RegistroDto;
+import com.example.dadosmeteorologicos.model.Registro;
 
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -120,10 +120,10 @@ public class ValorMedioController {
         java.sql.Date dataFinalSqlDate = java.sql.Date.valueOf(dataSelecionadaFinal);
         
         // Id da cidade MOCKADO
-        String IdCidade = "SC"; 
+        String IdCidade = "SP"; 
 
 
-        List<RegistroDto> resultado = service.consultaCidadePorIdEDatas(IdCidade, dataInicialSqlDate, dataFinalSqlDate);
+        List<Registro> resultado = service.consultaCidadePorIdEDatas(IdCidade, dataInicialSqlDate, dataFinalSqlDate);
         System.out.println(resultado.size());
 
         // Carrega a tela de resultados
